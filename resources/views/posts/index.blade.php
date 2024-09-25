@@ -8,6 +8,10 @@
     </head>
     <body>
         <h1>Blog Name</h1>
+	
+	<!-- Create post link -->
+        <a href='/posts/create'>Create New Post</a>
+
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
