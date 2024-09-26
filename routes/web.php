@@ -30,5 +30,5 @@ Route::get('/posts/create', [PostController::class, 'create']); //以下4行順�
 Route::get('/posts/{post}', [PostController::class ,'show']); // '/posts/{対象データのID}'にGetリクエストが来たら、PostControllerのshowメソッドを実行する
 Route::get('/posts/{post}/edit', [PostController::class, 'edit']);
 Route::put('/posts/{post}', [PostController::class, 'update']);
-
+Route::delete('/posts/{post}', [PostController::class,'delete']);
 ?>
