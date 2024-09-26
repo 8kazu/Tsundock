@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Post; 
 //use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
+use App\Models\Category;
 
 //class PostController extends Controller
 //{
@@ -40,9 +41,9 @@ class PostController extends Controller
 	return view('posts.show')->with(['post' => $post]); //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
     }
     // ブログ投稿作成画面表示用の部分
-    public function create()
+    public function create(Category $category)
     {
-	return view('posts.create');
+	return view('posts.create')->with(['categories' => $category->get()]);
     }
 
     // ブログ投稿作成処理用の部分
@@ -53,9 +54,20 @@ class PostController extends Controller
     //	return redirect('/posts/' . $post->id);
     //}
     public function store(Post $post, PostRequest $request) // 引数をRequestからPostRequestにする {
-    {    $input = $request['post'];
-        $post->fill($input)->save();
-        return redirect('/posts/' . $post->id);
+    {    
+	    $input = $request['post'];
+
+	    //（未完成）カテゴリーIDが空でも保存できるようにしたい、そのうち
+	    //カテゴリーIDが空の場合はnullを設定
+    	    if (empty($input['category_id'])) {
+        	$input['category_id'] = null;
+    	    }
+
+	    // fillメソッドを使用して入力値をセット
+	    $post->fill($input);
+	    $post->save();
+	   
+	    return redirect('/posts/' . $post->id);
     }
 
     //ブログの編集画面表示用の部分
