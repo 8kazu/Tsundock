@@ -26,6 +26,7 @@ class PostRequest extends FormRequest
         return [
             'post.title' => 'required|string|max:100',
             'post.body' => 'required|string|max:4000',
-        ];
+	    'post.category_id' => 'nullable|exists:categories,id', // nullableに変更
+	];
     }
 }
