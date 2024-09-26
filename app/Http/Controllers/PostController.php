@@ -71,5 +71,11 @@ class PostController extends Controller
 	    $post->fill($input_post)->save();
 	    return redirect('/posts/' . $post->id);
     }
+    //投稿削除実行用
+    public function delete(Post $post)
+    {
+	    $post->delete();
+	    return redirect('/');
+    }
 }
 ?>
