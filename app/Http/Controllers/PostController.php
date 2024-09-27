@@ -28,6 +28,32 @@ class PostController extends Controller
 {
     public function index(Post $post)
     {
+	    //APIを使うとき
+	// クライアントインスタンス生成
+        //$client = new \GuzzleHttp\Client();
+        // タグ一覧を取得するURL
+        //$url = 'https://teratail.com/api/v1/tags';
+        // リクエスト送信と返却データの取得
+        //$response = $client->request(
+        //    'GET',
+        //    $url,
+        //    [
+        //        'headers' => [
+        //            'Authorization' => 'Bearer ' . config('services.teratail.token')
+        //        ]
+        //    ]
+        //);
+        // API通信で取得したデータはjson形式なので
+        // PHPファイルに対応した連想配列にデコードする
+        //$tags = json_decode($response->getBody(), true);
+
+        // index bladeに取得したデータを渡す
+        //return view('posts.index')->with([
+        //    'posts' => $post->getPaginateByLimit(),
+        //    'tags' => $tags['tags'] ?? [], // 'tags'キーが存在しない場合に備えて
+	//]);
+
+	    
         return view('posts.index')->with(['posts' => $post->getPaginateByLimit()]); //blade内で使う変数'posts'と設定。'posts'の中身にgetを使い、インスタンス化した$postを代入。
 	//getPaginateByLimit()はPost.phpで定義したメソッド
     }
