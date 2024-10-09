@@ -5,6 +5,7 @@ use App\Models\Post;
 //use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Models\Category;
+use Inertia\Inertia;
 
 //class PostController extends Controller
 //{
@@ -57,6 +58,17 @@ class PostController extends Controller
         return view('posts.index')->with(['posts' => $post->getPaginateByLimit()]); //blade内で使う変数'posts'と設定。'posts'の中身にgetを使い、インスタンス化した$postを代入。
 	//getPaginateByLimit()はPost.phpで定義したメソッド
     }
+
+
+    // public function index(Post $post)
+    // {
+    //     $posts = $post->getPaginateByLimit();
+    
+    //     return Inertia::render('PostIndex', [
+    //         'posts' => $posts,
+    //     ]);
+    // }
+    
     /**
     * 特定IDのpostを表示する
     *
