@@ -43,10 +43,16 @@
 
             .content a {
                 display: block; /* ブロック表示にして横書きの流れを保つ */
-                margin-top: -40px; /* カテゴリーリンクの位置を調整 */
+                margin-top: -100px; /* カテゴリーリンクの位置を調整 */
                 margin-right: 500px;
                 color: black;
                 text-align: center; /* カテゴリーリンクを中央揃え */
+                white-space: nowrap; /* 改行を防止 */
+                color: white; /* テキストを白色に */
+                background-color: rgba(0, 0, 0, 0.6); /* 薄い黒背景にする (60%の透明度) */
+                padding: 5px 10px; /* 内側に余白を追加 */
+                border-radius: 5px; /* 角を丸める */
+                display: inline-block; /* 要素をインラインブロックにして、コンパクトに表示 */
             }
 
             .content__post {
@@ -57,9 +63,8 @@
 
             .edit {
                 position: absolute;
-                margin-top: 300px; 
-                margin-left: 650px;
-                
+                margin-top: 230px; 
+                margin-left: 680px;
             }
 
             .footer {
@@ -68,7 +73,19 @@
                 margin-left: 1400px;
             }
 
-            .edit a, .footer a {
+            .edit a {
+                color: #00008B; /* 戻るボタンと同じ濃い青色に変更 */
+                font-weight: bold; /* 文字を太字に */
+                text-decoration: none; /* 下線を削除 */
+                background-color: transparent; /* 背景を透明に設定 */
+                padding: 5px 10px; /* 必要に応じて余白を追加 */
+            }
+
+            .edit a:hover {
+                text-decoration: underline; /* ホバー時に下線を追加 */
+            }
+
+            .footer a {
                 color: #00008B; /* ボタンの色を濃い青に変更 (dark blue) */
                 font-weight: bold; /* 文字を太字に */
             }
