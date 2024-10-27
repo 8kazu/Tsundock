@@ -7,17 +7,17 @@
     <!-- フォント -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <style>
-.image-container {
-    position: relative;
-    width: 80%; /* 背景画像をさらに広げる */
-    max-width: 1600px; /* 必要に応じて最大幅を設定 */
-    margin: 0 auto;
-}
+        .image-container {
+            position: relative;
+            width: 80%; /* 背景画像をさらに広げる */
+            max-width: 1600px; /* 必要に応じて最大幅を設定 */
+            margin: 0 auto;
+        }
 
-.image-container img {
-    width: 100%; /* 画像をコンテナの横幅いっぱいに広げる */
-    height: auto;
-}
+        .image-container img {
+            width: 100%; /* 画像をコンテナの横幅いっぱいに広げる */
+            height: auto;
+        }
 
 
         h2 {
@@ -26,36 +26,33 @@
         }
 
         .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    color: black;
-    max-width: 90%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* コンテンツを中央に配置 */
-}
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            color: black;
+            max-width: 90%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* コンテンツを中央に配置 */
+        }
 
-input[type="text"],
-select,
-textarea {
-    width: 55vw; /* 画面幅の80%に設定 */
-    max-width: 1400px; /* 最大幅を設定 */
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    border: 2px solid #ccc;
-    font-size: 18px;
-    box-sizing: border-box;
-}
-
-
-
+        input[type="text"],
+        select,
+        textarea {
+            width: 55vw; /* 画面幅の80%に設定 */
+            max-width: 1400px; /* 最大幅を設定 */
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 2px solid #ccc;
+            font-size: 18px;
+            box-sizing: border-box;
+        }
 
 
         input[type="submit"] {
@@ -69,11 +66,14 @@ textarea {
             cursor: pointer;
             font-size: 1vw;
             transition: background-color 0.3s ease;
+            left: 80%; /* ボタンの位置を調整 (画像の右下付近) */
+            top: 80%;  /* ボタンの位置を調整 (画像の下付近) */
+            transform: translate(-50%, -50%); /* 中央揃え調整 */
         }
 
-input[type="submit"]:hover {
-    background-color: #000066;
-}
+        input[type="submit"]:hover {
+            background-color: #000066;
+        }
 
         .back a {
             color: blue;
@@ -81,7 +81,6 @@ input[type="submit"]:hover {
         }
     </style>
     <script>
-        // ウィンドウリサイズ時にボタン位置を調整
         window.addEventListener('resize', adjustButtonPosition);
         window.addEventListener('load', adjustButtonPosition);
 
@@ -94,10 +93,12 @@ input[type="submit"]:hover {
                 const buttonWidth = submitButton.offsetWidth;
                 const buttonHeight = submitButton.offsetHeight;
 
-                // ボタンを背景画像の右下に配置
-                submitButton.style.position = 'absolute';
-                submitButton.style.left = (rect.right - buttonWidth - 100) + 'px';
-                submitButton.style.top = (rect.bottom - buttonHeight - 120) + 'px';
+                // モニターサイズに関係なく、画像の特定の位置にボタンを配置
+                const leftPosition = rect.width * 0.7; // 画像の幅の85%の位置に配置
+                const topPosition = rect.height * 0.45; // 画像の高さの85%の位置に配置
+
+                submitButton.style.left = `${leftPosition}px`;
+                submitButton.style.top = `${topPosition}px`;
             }
         }
     </script>
@@ -123,7 +124,7 @@ input[type="submit"]:hover {
                     <div class="category">
                         <h2>Category</h2>
                         <select name="post[category_id]">
-                            <option value="">カテゴリーを選択</option>
+                            <option value="">（必須）カテゴリーを選択</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
@@ -134,12 +135,16 @@ input[type="submit"]:hover {
                         <h2>About</h2>
                         <textarea name="post[body]" placeholder="ex.)表示のイラストがとても魅力的。">{{ old('post.body') }}</textarea>
                         <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
+                        <input type="submit" value="Tsundock"/>
                     </div>
                 </form>
                 <div class="back">[<a href="/">戻る</a>]</div>
+                <form action="/posts" method="POST">
+
+                </form>
             </div>
         </div>
-        <input type="submit" value="Tsundock"/>
+
     </x-app-layout>
 </body>
 </html>
